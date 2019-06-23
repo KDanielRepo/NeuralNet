@@ -8,6 +8,7 @@ public class Main {
         tekst.test();
         Bot bot = new Bot();
         bot.ready();
+        bot.test();
     }
 
 }

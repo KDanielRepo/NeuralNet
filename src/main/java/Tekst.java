@@ -6,8 +6,10 @@ import java.net.URL;
 import java.util.Arrays;
 
 public class Tekst {
-    int x = 0;
-    int y = 0;
+    int x = 7;
+    int y = 367;
+    int combatx;
+    int combaty;
     int[][] litA = new int[14][16];
     int[][] litB = new int[14][16];
     int[][] litC = new int[14][16];
@@ -35,33 +37,43 @@ public class Tekst {
     int[][] litY = new int[14][16];
     int[][] litZ = new int[14][16];
     int[][] colory = new int[14][16];
+    int[][] combatText = new int[14][16];
     String tekst = "";
+    String combatString = "";
     String[] litery = new String[26];
+    boolean combat = false;
     Color black = new Color(255, 255, 255);
     Color white = new Color(0, 0, 0);
-    File file = new File("C:\\NeuralNet\\src\\main\\java\\kolejny.png");
+    File file = new File("C:\\NeuralNet\\src\\main\\java\\screenshot.png");
 
     public void test() throws IOException {
         BufferedImage image = ImageIO.read(file);
         System.out.println(image.getWidth());
         System.out.println(image.getWidth() / 14f);
         System.out.println(image.getWidth() / 16f);
-        for (int k = 0; k < (image.getWidth() / 14)-((image.getWidth() / 14f)-(image.getWidth() / 16f));k++) {
-            //System.out.println(k);
+        for (int k = 0; k < ((image.getWidth()-7) / 14)-(((image.getWidth()-7) / 14f)-((image.getWidth()-7) / 16f))-1;k++) {
+            System.out.println(k);
             for (int i = 0; i < 14; i++) {
                 for (int j = 0; j < 15; j++) {
                     int korx = i + x;
                     int kory = j + y;
                     //System.out.println(i+" oraz "+korx);
                     int clr = image.getRGB(korx, kory);
+                    int clrr = image.getRGB(i+combatx,j+combaty);
                     if (clr == -16777216) {
                         colory[i][j] = 1;
                     } else {
                         colory[i][j] = 0;
                     }
+                    if (clrr == -16777216) {
+                        combatText[i][j] = 1;
+                    } else {
+                        combatText[i][j] = 0;
+                    }
                 }
             }
             x += 16;
+            combatx +=16;
 
             if (Arrays.deepEquals(colory, litA)) {
                 tekst += "a";
@@ -119,7 +131,67 @@ public class Tekst {
                 tekst += " ";
                 //System.out.println(" ");
             }
+            if (Arrays.deepEquals(combatText, litA)) {
+                combatString += "a";
+            } else if (Arrays.deepEquals(combatText, litB)) {
+                combatString += "b";
+            } else if (Arrays.deepEquals(combatText, litC)) {
+                combatString += "c";
+            } else if (Arrays.deepEquals(combatText, litD)) {
+                combatString += "d";
+            } else if (Arrays.deepEquals(combatText, litE)) {
+                combatString += "e";
+            } else if (Arrays.deepEquals(combatText, litF)) {
+                combatString += "f";
+            } else if (Arrays.deepEquals(combatText, litG)) {
+                combatString += "g";
+            } else if (Arrays.deepEquals(combatText, litH)) {
+                combatString += "h";
+            } else if (Arrays.deepEquals(combatText, litI)) {
+                combatString += "i";
+            } else if (Arrays.deepEquals(combatText, litJ)) {
+                combatString += "j";
+            } else if (Arrays.deepEquals(combatText, litK)) {
+                combatString += "k";
+            } else if (Arrays.deepEquals(combatText, litL)) {
+                combatString += "l";
+            } else if (Arrays.deepEquals(combatText, litM)) {
+                combatString += "m";
+            } else if (Arrays.deepEquals(combatText, litN)) {
+                combatString += "n";
+            } else if (Arrays.deepEquals(combatText, litO)) {
+                combatString += "o";
+            } else if (Arrays.deepEquals(combatText, litP)) {
+                combatString += "p";
+            } else if (Arrays.deepEquals(combatText, litQ)) {
+                combatString += "q";
+            } else if (Arrays.deepEquals(combatText, litR)) {
+                combatString += "r";
+            } else if (Arrays.deepEquals(combatText, litS)) {
+                combatString += "s";
+            } else if (Arrays.deepEquals(combatText, litT)) {
+                combatString += "t";
+            } else if (Arrays.deepEquals(combatText, litU)) {
+                combatString += "u";
+            } else if (Arrays.deepEquals(combatText, litV)) {
+                combatString += "v";
+            } else if (Arrays.deepEquals(combatText, litW)) {
+                combatString += "w";
+            } else if (Arrays.deepEquals(combatText, litX)) {
+                combatString += "x";
+            } else if (Arrays.deepEquals(combatText, litY)) {
+                combatString += "y";
+            } else if (Arrays.deepEquals(combatText, litZ)) {
+                combatString += "z";
+            } else {
+                combatString += " ";
+                //System.out.println(" ");
+            }
         }
+        x=7;
+        y=367;
+        combatx = 0;
+        combaty = 0;
         System.out.println(tekst);
     }
 
@@ -217,5 +289,8 @@ public class Tekst {
             }
             bufferedReader.close();
         }
+    }
+    public String getCombatString(){
+        return combatString;
     }
 }
