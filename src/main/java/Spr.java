@@ -5,13 +5,13 @@ import java.io.*;
 import java.net.URL;
 import java.util.Arrays;
 
-public class Tekst {
+public class Spr {
     int x = 1;
     int y = 367;
     int hpX=177;
     int hpY=127;
-    int combatx=33;
-    int combaty=143;
+    int combatx=1;
+    int combaty=47;
     int[] turaX = new int[4];
     int[] turaY = new int[4];
     int[][] litA = new int[14][16];
@@ -82,7 +82,7 @@ public class Tekst {
         weez=false;
         turaX = new int[]{49,113,49,113};
         turaY = new int[]{79,79,95,95};
-        File file = new File("C:\\NeuralNet\\src\\main\\java\\screenshot.png");
+        File file = new File("C:\\NeuralNet\\src\\main\\java\\litery\\1.png");
         BufferedImage image = ImageIO.read(file);
         //System.out.println(image.getWidth());
         //System.out.println(image.getWidth() / 14f);
@@ -104,13 +104,14 @@ public class Tekst {
             }
             x += 16;
             comparingLetters(colory);
+            comparingNumbers(colory);
         }
 
-            //hp
-        for(int k = 0; k< 2; k++) {
+        //hp
+        for(int k = 0; k< 1; k++) {
             for (int i = 0; i < 14; i++) {
                 for (int j = 0; j < 16; j++) {
-                    int clrr = image.getRGB(i + hpX, j + hpY);
+                    int clrr = image.getRGB(i, j);
                     if (clrr == -16777216) {
                         hpText[i][j] = 1;
                     } else {
@@ -122,7 +123,7 @@ public class Tekst {
             hpX +=16;
             comparingNumbers(hpText);
         }
-            //combat
+        /*//combat
         for(int k = 0; k<5;k++) {
             for (int i = 0; i < 14; i++) {
                 for (int j = 0; j < 15; j++) {
@@ -136,51 +137,48 @@ public class Tekst {
             }
             combatx+=16;
             comparingLetters2(combatText);
-        }
-        //czyja tura
-        for(int k = 0; k<4; k++){
-            for(int i = 0; i<14; i++){
-                for(int j = 0; j<16; j++){
-                    int cbr = image.getRGB(turaX[k]+i, turaY[k]+j);
-                    if (cbr == -16777216) {
-                        tura[i][j] = 1;
-                    } else {
-                        tura[i][j] = 0;
-                    }
+        }*/
+        for(int i = 0; i<14; i++){
+            for(int j = 0; j<16; j++){
+                int cbr = image.getRGB(i, j);
+                if (cbr == -16777216) {
+                    tura[i][j] = 0;
+                } else {
+                    tura[i][j] = 1;
                 }
             }
-            if(Arrays.deepEquals(tura,litNot1)){
-                crag = true;
-                ithilgore=false;
-                serena=false;
-                weez=false;
-            }
-            if(Arrays.deepEquals(tura,litNot2)){
-                ithilgore = true;
-                crag=false;
-                serena=false;
-                weez=false;
-            }
-            if(Arrays.deepEquals(tura,litNot3)){
-                serena = true;
-                crag=false;
-                weez=false;
-                ithilgore=false;
-            }
-            if(Arrays.deepEquals(tura,litNot4)){
-                weez = true;
-                crag=false;
-                ithilgore=false;
-                serena=false;
-            }
+        }
+        if(Arrays.deepEquals(tura,litNot1)){
+            crag = true;
+            ithilgore=false;
+            serena=false;
+            weez=false;
+        }
+        if(Arrays.deepEquals(tura,litNot2)){
+            ithilgore = true;
+            crag=false;
+            serena=false;
+            weez=false;
+        }
+        if(Arrays.deepEquals(tura,litNot3)){
+            serena = true;
+            crag=false;
+            weez=false;
+            ithilgore=false;
+        }
+        if(Arrays.deepEquals(tura,litNot4)){
+            weez = true;
+            crag=false;
+            ithilgore=false;
+            serena=false;
         }
         x=1;
         y=367;
         hpX = 177;
         hpY = 127;
-        combatx = 33;
-        combaty = 143;
-        //System.out.println(crag+" "+ithilgore+" "+serena+" "+weez+" ");
+        combatx = 1;
+        combaty = 47;
+        System.out.println(crag+" "+ithilgore+" "+serena+" "+weez+" ");
         System.out.println(tekst);
         System.out.println(hpString);
         System.out.println(combatString);
@@ -476,7 +474,7 @@ public class Tekst {
         } else if (Arrays.deepEquals(a, lit9)) {
             hpString += "9";
         }else {
-            hpString += "";
+            hpString += " ";
             //System.out.println(" ");
         }
     }
